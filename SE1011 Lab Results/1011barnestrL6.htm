@@ -1,0 +1,164 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><title>barnestr</title></head><body><xmp>
+
+# Lab 6 -- Simple Class
+
+* Date: 10-16-2017
+* Course: SE1011-051
+* Submitted to: Dr. Chris Taylor
+
+>> | Earned | Possible | Criteria                                         |
+>> | ------ | -------- | ------------------------------------------------ |
+>> |    5   |    10    | UML Class Diagram                                |
+>> |   75   |    75    | Met requirements / Technical quality             |
+>> |   10   |    10    | Coding standard compliance and program clarity   |
+>> |    5   |     5    | Following submission instructions                |
+>
+> # Feedback
+> * Nice work
+
+# BuildingCostEstimator.java
+
+```
+/*
+ * SE1011
+ * Fall 2017
+ * Lab 6 - BuildingCostEstimator
+ * Name: Trevor Barnes
+ * Created: 10/10/2017
+ */
+package barnestr;
+
+public class BuildingCostEstimator {
+```
+> #### Class Javadoc requirements
+> The [Coding Standard](http://msoe.us/taylor/se1011/CodingStandard) requires
+> the following:
+>> Class comments - each class is commented using Javadoc style. The comment
+>> contains a brief description of the class (not required for a class that
+>> is the main or driver).
+
+```
+    private final int SQ_FEET_COST = 130;
+    private final int FULL_BATH_COST = 15000;
+    private final int HALF_BATH_COST = 7000;
+    private final int BEDROOM_COST = 3000;
+    private final int WINDOW_COST = 800;
+    private final int GARAGE_COST = 8000;
+    private int sqFeet;
+    private int numFullBaths;
+    private int numHalfBaths;
+    private int numBeds;
+    private int numWindows;
+    private double numGarages;
+
+    public int getSquareFeet() {
+        return sqFeet;
+    }
+
+    public int getNumFullBaths() {
+        return numFullBaths;
+    }
+
+    public int getNumHalfBaths() {
+        return numHalfBaths;
+    }
+
+    public int getNumBedrooms() {
+        return numBeds;
+    }
+
+    public int getNumWindows() {
+        return numWindows;
+    }
+
+    public double getNumGarages() {
+        return numGarages;
+    }
+
+
+    public double costToBuild() {
+```
+> #### Method Javadoc requirements
+> The [Coding Standard](http://msoe.us/taylor/se1011/CodingStandard) requires
+> the following:
+>> Method comments - public methods are commented using Javadoc style,
+>> with the exception of getters and setters which typically are not commented. For example:
+>>
+>> ```
+/**
+ * This method prints out "Hello" to the person given and
+ * returns the number of letters in the person's name.
+ *
+ * @param name The person to who to say hello.
+ * @return The number of characters in the person's name.
+ */
+```
+
+```
+        return (sqFeet*SQ_FEET_COST)+(numFullBaths*FULL_BATH_COST)+(numHalfBaths*HALF_BATH_COST)+
+                (numBeds*BEDROOM_COST)+(numWindows*WINDOW_COST)+(numGarages*GARAGE_COST);
+    }
+
+
+    public void setSquareFeet(int sqFeet) {
+        this.sqFeet = sqFeet;
+    }
+
+    public void setNumFullBaths(int numFullBaths) {
+        this.numFullBaths = numFullBaths;
+    }
+
+    public void setNumHalfBaths(int numHalfBaths) {
+        this.numHalfBaths = numHalfBaths;
+    }
+
+    public void setNumBedrooms(int numBeds) {
+        this.numBeds = numBeds;
+```
+> #### Foolproofing your class
+> One of the ways that your implementation would fail is if someone were
+> to ask your class to set one of the attributes to a negative value;
+> `setNumBedrooms(-50);`, for example.
+> 
+> While you could claim that it is not your fault that somebody was dumb
+> enough to try to build a house with -50 bedrooms, it still makes you look
+> bad because the class you wrote is producing crazying answers.  ("You'll pay
+> me to build my house for me?").
+> 
+> You can protect against this sort of thing by checking in each of your
+> `set`Whatever`()` methods to make sure you were not passed a negative
+> value.  You could then return a `boolean` which indicated whether or
+> not the value had actual been changed by the call to `set`Whatever`()`.
+> For example, the `setNumBedrooms()` method could look like this:
+> 
+> ```
+public boolean setNumBedrooms(int numBedrooms) {
+  boolean changed = false;
+  if(numBedrooms>=0) {
+    this.numBedrooms = numBedrooms;
+    changed = true;
+  }
+  return changed;
+}
+```
+
+> Of course, it is difficult to completely foolproof your class since fools
+> are so ingenious.
+
+```
+    }
+
+    public void setNumWindows(int numWindows) {
+        this.numWindows = numWindows;
+    }
+
+    public void setNumGarages(double numGarages) {
+        this.numGarages = numGarages;
+    }
+
+}
+
+
+```
+
+</xmp><script type="text/javascript" src="http://msoe.us/taylor/gradedown.js"></script></body></html>

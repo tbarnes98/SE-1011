@@ -1,0 +1,89 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><title>barnestr</title></head><body><xmp>
+# Lab 2 -- Small Programs
+
+* Date: 9-13-2017
+* Course: SE1011
+* Submitted to: Dr. Chris Taylor
+
+>> | Earned | Possible | Criteria                                         |
+>> | ------ | -------- | ------------------------------------------------ |
+>> |   100  |    100   | All tests passed                                 |
+>
+> # Feedback
+> * Nice work
+
+# Negative
+Given a number, return its negative.
+
+```
+public int negate(int value) {
+  int number = -(value);
+  return number;
+}
+```
+
+> #### Suggested simplification
+> This could simplified even more.  You could just say:
+>
+> ```
+  return -value;
+```
+>
+> In this case, it doesn't matter too much, but as our program become
+> more complicated, being able to write things in as simple a way as possible
+> will allow you to write more complicated programs without adding unneeded
+> complications.
+
+# How Many Pennies
+Given a number representing dollars and cents, e.g. 2.18, return the number of pennies corresponding to that amount.
+
+```
+public int howManyPennies(double dollars) {
+  double pennies = (dollars * 100);
+  return (int)pennies;
+}
+```
+
+# Last Half
+Given a non-empty string with an even number of characters, return the last half. E.g., Given "this" return "is".
+
+```
+String lastHalf(String str) {
+  int length;
+  int pos;
+  length = str.length();
+  pos = length / 2;
+  String res;
+  res = str.substring(pos);
+  return res;
+}
+```
+
+# Make Initialization
+Make a program that writes a line of Java code. Given the name of the variable and its value, return an initialization of an int with that name and value. E.g., given the name "x" and the value "5", return "int x = 5;"
+
+```
+String makeInitialization(String name, int value) {
+  return ("int " + name +  " = "  +  value + ";");
+}
+```
+
+# Fractions
+Given a fraction expressed as a numerator and denominator, return the fraction as a floating point number.
+
+```
+public double fraction(int numerator, int denominator) {
+  double result;
+  result = (double)numerator / denominator;
+  return result;
+}
+```
+
+> #### Pick good identifier names
+> Picking good identifier names will become more important as your
+> programs get more complicated.  Picking good names can be difficult.
+> I'd like you to start getting practice with that now, even though
+> it really isn't necessary to understand these simple programs.
+
+
+</xmp><script type="text/javascript" src="http://msoe.us/taylor/gradedown.js"></script></body></html>

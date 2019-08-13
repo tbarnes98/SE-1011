@@ -1,0 +1,116 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><title>barnestr</title></head><body><xmp>
+# Lab 4 -- Loops
+
+* Date: 10-2-2017
+* Course: SE1011-051
+* Submitted to: Dr. Chris Taylor
+
+>> | Earned | Possible | Criteria                                         |
+>> | ------ | -------- | ------------------------------------------------ |
+>> |    5   |     5    | Demo by end of lab                               |
+>> |   85   |    85    | Met requirements / Technical quality             |
+>> |    5   |     5    | Coding standard compliance and program clarity   |
+>> |    5   |     5    | Following submission instructions                |
+>
+> # Feedback
+> * Nice work
+
+# Lab4.java
+
+```
+/*
+* Course: SE1011-051
+* Term: Fall 2017-2018
+* Assignment Lab 3 Console
+```
+> #### This is lab 4
+
+```
+* Author: Trevor Barnes
+* Date: 9/26/17
+ */
+
+/*
+This program is a game where a user chooses between two scenarios where their uncle offers them money.
+Until he dies (0-40 weeks) he will either add an original value of money between $0-5000 per week or
+double money every week starting at $0.01.
+If the option chosen is greater than the opposite option, the user wins and the user is shown how much extra money they made.
+If the option chosen is less than the opposite option, the user loses and the user is shown how much money they missed out on.
+Finally, the user is given the option to play again or end the program.
+ */
+
+package barnestr;
+
+import java.util.Scanner;
+
+public class Lab4 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int again = 1;
+        while(again == 1) {
+```
+> #### Prefer to use a `boolean` here
+> Since this is supposed to keep track of one of two things (whether to
+> repeat or not), you should use a `boolean` variable to store the value.
+
+```
+
+            System.out.println("Suppose you have a wealthy uncle who gives you two options for your inheritance. He will add to your inheritance every week until he dies according to one of two schemes:\n" +
+                    "\n" +
+                    "1. Starting with a given amount (such as $5000), he will add that amount to your total inheritance every week, or\n" +
+                    "2. Starting with one penny, he will double your inheritance every week.\n" +
+                    "Option 2 will always outpace option 1 at some point in the future, but the question is when will option 2 be a better financial decision for you than option 1 and will it happen before your uncle dies?\n" +
+                    "\n" +
+                    "Enter which option you would prefer ('1' or '2'):");
+            int option=sc.nextInt();
+            double number1 = Math.random();
+            double startAmount = 5000*number1;
+            double startAmountA = 5000*number1;
+```
+> #### Pick meaningful identifier names
+> You should pick meaningful identifier names.  This makes it easier
+> to understand your code.  It can also reduce the amount of comments you
+> need to include because your code will be more self-explanatory.
+>
+> `startAmount` does not contain the starting amount when looping.
+
+```
+            double exp = .01;
+            double number2 = Math.random();
+            int randWeeks = (int) (40*number2);
+            int week = 1;
+            while (week < randWeeks) {
+                System.out.format("Week %2d Linear: $%.2f, Exponential: $%.2f\n", week, startAmount, exp);
+```
+> #### -5 Stop weekly display after exponential exceeds linear
+> You should not display the weekly totals once the exponential total
+> exceeds the linear total.
+
+```
+                week = week + 1;
+                startAmount = (startAmount + startAmountA);
+                exp = exp*2;
+            }
+
+            System.out.println("\n" + "Your uncle dies after " + week + " weeks so you");
+            if(option == 1 && startAmount > exp) {
+                double finalAmount = startAmount - exp;
+                System.out.format("got lucky and ended up with an extra $%.2f\n", finalAmount);
+            } else if(option == 1 && startAmount < exp) {
+                double finalAmount = exp - startAmount;
+                System.out.format("got unlucky and missed out on $%.2f\n", finalAmount);
+            } else if(option == 2 && exp > startAmount) {
+                double finalAmount = exp - startAmount;
+                System.out.format("got lucky and ended up with $%.2f\n", finalAmount);
+            } else if(option == 2 && exp < startAmount) {
+                double finalAmount = startAmount - exp;
+                System.out.format("got unlucky and missed out on $%.2f\n", finalAmount);
+            }
+            System.out.println("Do you want to play again? (1 for yes) or (0 for no)");
+            again = sc.nextInt();
+        }
+    }
+}
+```
+
+</xmp><script type="text/javascript" src="http://msoe.us/taylor/gradedown.js"></script></body></html>

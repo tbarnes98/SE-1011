@@ -1,0 +1,319 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><title>barnestr</title></head><body><xmp>
+# Lab 3 -- Conditionals
+
+* Date: 9-27-2017
+* Course: SE1011-051
+* Submitted to: Dr. Chris Taylor
+
+>> | Earned | Possible | Criteria                                         |
+>> | ------ | -------- | ------------------------------------------------ |
+>> |    5   |     5    | In lab demonstration                             |
+>> |   70   |    70    | Technical quality (see comments below)           |
+>> |   12   |    15    | Passed tests (see comments below)                |
+>> |    5   |     5    | Following submission instructions                |
+>> |    5   |     5    | Internal documentation/program clarity (see comments below) |
+>
+> # Feedback
+> * Nice work
+
+# Lab3GUI.java
+
+```
+import javax.swing.*;
+```
+> #### -1 Did not use the required package
+> Your classes were supposed to be in a package named the same as your
+> MSOE login (`barnestr`).
+
+```
+/*
+* Course: SE1011-051
+* Term: Fall 2017-2018
+```
+> #### Please put this at the very beginning
+> You should put this comment at the very beginning of your file.
+
+```
+* Assignment Lab 3 GUI
+* Author: Trevor Barnes
+* Date: 9/19/17
+ */
+
+//S Filer Bracket Differences Multiplied by Tax Rate
+//.10*9325 = 932.5
+//.15*28625 = 4293.75
+//.25*53950 = 13487.5
+//.28*99750 =  27930
+```
+> #### Have program calculate these
+> You should have the program calculate these rather than having
+> this as a comment.  If these calculations were shown in the code
+> (and you had meaningful names), you wouldnt need this comment
+> because the reader of your code could see what the numbers mean
+> and how they were calculated.
+
+```
+//.33*225050 = 74266.5
+//.35*1700 = 595
+//J Filer Bracket Differences Multiplied by Tax Rate
+//.10*18650 = 1865.0
+//.15*57250 = 8575.5
+//.25*77200 = 19300.0
+//.28*80250 = 22470.0
+//.33*183350 = 60505.5
+//.35*54000 = 18900.0
+
+public class Lab3GUI {
+    public static void main(String[] args) {
+        Double sb1 = 932.5;
+        Double sb2 = 4293.75;
+        Double sb3 = 13487.5;
+```
+> #### -1 Pick meaningful identifier names
+> You should pick meaningful identifier names.  This makes it easier
+> to understand your code.  It can also reduce the amount of comments you
+> need to include because your code will be more self-explanatory.
+
+```
+        Double sb4 = 27930.0;
+        Double sb5 = 74266.5;
+        Double sb6 = 595.0;
+
+        Double jb1 = 1865.0;
+        Double jb2 = 8575.5;
+        Double jb3 = 19300.0;
+        Double jb4 = 22470.0;
+        Double jb5 = 60505.5;
+        Double jb6 = 18900.0;
+        String filer = JOptionPane.showInputDialog
+                (null, "Are you a single filer or a married joint filer (enter 's' or 'j')");
+        Double income = new Double (JOptionPane.showInputDialog
+                (null, "Enter an estimate of your earned income for 2017"));
+        if(filer.equals ("s")) {
+            if(income <= 9325) {
+                JOptionPane.showMessageDialog
+                        (null, "Your estimated taxes for 2017 are: $" + income*.10);
+                }
+            else if (income >= 9326 && income <= 37950 ) {
+```
+> #### Avoid magic numbers
+> The [Coding Standard](http://msoe.us/taylor/se1011/CodingStandard) requires
+> the following:
+>> Named constants are used instead of numeric literals.
+>
+> You should avoid having seemingly random values sprinkled throughout your
+> code.  These values are often referred to as **magic numbers** because
+> they appear magically.  One great way to avoid this is to create named
+> constants in your code.  By providing a name you can describe what the
+> value represents.  For example:
+>
+> ```
+final int SINGLE_15_THRESHOLD = 37950;
+```
+>
+> This creates a variable, `SINGLE_15_THRESHOLD`, and assigns it a value that cannot
+> change.  Instead of tossing `37950` later in your code.
+
+```
+                JOptionPane.showMessageDialog
+                        (null, "Your estimated taxes for 2017 are: $" + (((income-9325)*.15)+(sb1)));
+                }
+            else if (income >= 37951 && income <= 91900 ) {
+                JOptionPane.showMessageDialog
+                        (null, "Your estimated taxes for 2017 are: $" + (((income-37950)*.25)+(sb1)+(sb2)));
+                }
+            else if (income >= 91901 && income <= 191650 ) {
+                JOptionPane.showMessageDialog
+                        (null, "Your estimated taxes for 2017 are: $" + (((income-91900)*.28)+(sb1)+(sb2)+(sb3)));
+                }
+            else if (income >= 191651 && income <= 416700 ) {
+                JOptionPane.showMessageDialog
+                        (null, "Your estimated taxes for 2017 are: $" + (((income-191650)*.33)+(sb1)+(sb2)+(sb3)+(sb4)));
+                }
+            else if (income >= 416701 && income <= 418400 ) {
+                JOptionPane.showMessageDialog
+                        (null, "Your estimated taxes for 2017 are: $" + (((income-416700)*.35)+(sb1)+(sb2)+(sb3)+(sb4)+(sb5)));
+                }
+            else if (income >= 418401 ) {
+                JOptionPane.showMessageDialog
+                        (null, "Your estimated taxes for 2017 are: $" + (((income-418400)*.396)+(sb1)+(sb2)+(sb3)+(sb4)+(sb5)+(sb6)));
+                }
+            }
+        else if(filer.equals ("j")) {
+            if(income <= 18650) {
+                JOptionPane.showMessageDialog
+                        (null, "Your estimated taxes for 2017 are: $" + income*.10);
+            }
+            else if (income >= 18651 && income <= 75900 ) {
+                JOptionPane.showMessageDialog
+                        (null, "Your estimated taxes for 2017 are: $" + (((income-18650)*.15)+(jb1)));
+            }
+            else if (income >= 75901 && income <= 153100 ) {
+                JOptionPane.showMessageDialog
+                        (null, "Your estimated taxes for 2017 are: $" + (((income-75900)*.25)+(jb1)+(jb2)));
+            }
+            else if (income >= 153101 && income <= 233350 ) {
+                JOptionPane.showMessageDialog
+                        (null, "Your estimated taxes for 2017 are: $" + (((income-153100)*.28)+(jb1)+(jb2)+(jb3)));
+            }
+            else if (income >= 233351 && income <= 416700 ) {
+                JOptionPane.showMessageDialog
+                        (null, "Your estimated taxes for 2017 are: $" + (((income-233350)*.33)+(jb1)+(jb2)+(jb3)+(jb4)));
+            }
+            else if (income >= 416701 && income <= 470700 ) {
+                JOptionPane.showMessageDialog
+                        (null, "Your estimated taxes for 2017 are: $" + (((income-416700)*.35)+(jb1)+(jb2)+(jb3)+(jb4)+(jb5)));
+            }
+            else if (income >= 470701 ) {
+                JOptionPane.showMessageDialog
+                        (null, "Your estimated taxes for 2017 are: $" + (((income-470700)*.396)+(jb1)+(jb2)+(jb3)+(jb4)+(jb5)+(jb6)));
+            }
+        }
+    }
+}
+```
+
+# Lab3Console
+
+```
+import java.util.Scanner;
+/*
+* Course: SE1011-051
+* Term: Fall 2017-2018
+* Assignment Lab 3 Console
+* Author: Trevor Barnes
+* Date: 9/19/17
+ */
+
+//S Filer Bracket Differences Multiplied by Tax Rate
+//.10*9325 = 932.5
+//.15*28625 = 4293.75
+//.25*53950 = 13487.5
+//.28*99750 =  27930
+//.33*225050 = 74266.5
+//.35*1700 = 595
+//J Filer Bracket Differences Multiplied by Tax Rate
+//.10*18650 = 1865.0
+//.15*57250 = 8575.5
+//.25*77200 = 19300.0
+//.28*80250 = 22470.0
+//.33*183350 = 60505.5
+//.35*54000 = 18900.0
+
+public class Lab3Console {
+    public static void main(String[] args) {
+        Double sb1 = 932.5;
+        Double sb2 = 4293.75;
+        Double sb3 = 13487.5;
+        Double sb4 = 27930.0;
+        Double sb5 = 74266.5;
+        Double sb6 = 595.0;
+
+        Double jb1 = 1865.0;
+        Double jb2 = 8575.5;
+        Double jb3 = 19300.0;
+        Double jb4 = 22470.0;
+        Double jb5 = 60505.5;
+        Double jb6 = 18900.0;
+        System.out.println("Are you a single filer or married joint filer? (enter 's' or 'j'):");
+        Scanner sl = new Scanner(System.in);
+        String  filer = sl.nextLine();
+
+        System.out.println("Enter an estimate of you earned income for 2017:");
+        Double income = Double.valueOf(sl.next());
+        if(filer.equals ("s")) {
+            if (income <= 9325) {
+                System.out.println("Your estimated taxes for 2017 are: $" + income * .10);
+            }
+            else if (income >= 9326 && income <= 37950) {
+                System.out.println("Your estimated taxes for 2017 are: $" + (((income - 9325) * .15) + (sb1)));
+            }
+```
+> #### -1 No result for $37950.34
+> Careful here.  If the user enters an estimated income between ranges, your
+> program will not calculate the tax owed.  For example, if the user is a
+> single filer with an estimated income of $37950.34, that will be between
+> $37950 and $37951.  As a result, every `if` conditional
+> will be `false` and no calculation will occur.
+
+```
+            else if (income >= 37951 && income <= 91900) {
+                System.out.println("Your estimated taxes for 2017 are: $" + (((income - 37950) * .25) + (sb1) + (sb2)));
+            }
+            else if (income >= 91901 && income <= 191650) {
+                System.out.println("Your estimated taxes for 2017 are: $" + (((income - 91900) * .28) + (sb1) + (sb2) + (sb3)));
+            }
+            else if (income >= 191651 && income <= 416700) {
+                System.out.println("Your estimated taxes for 2017 are: $" + (((income - 191650) * .33) + (sb1) + (sb2) + (sb3) + (sb4)));
+            }
+            else if (income >= 416701 && income <= 418400) {
+                System.out.println("Your estimated taxes for 2017 are: $" + (((income - 416700) * .35) + (sb1) + (sb2) + (sb3) + (sb4) + (sb5)));
+            }
+            else if (income >= 418401) {
+                System.out.println("Your estimated taxes for 2017 are: $" + (((income - 418400) * .396) + (sb1) + (sb2) + (sb3) + (sb4) + (sb5) + (sb6)));
+            }
+        }
+        else if(filer.equals ("j")) {
+            if(income <= 18650) {
+                System.out.println("Your estimated taxes for 2017 are: $" + income*.10);
+            }
+            else if (income >= 18651 && income <= 75900 ) {
+                System.out.println("Your estimated taxes for 2017 are: $" + (((income-18650)*.15)+(jb1)));
+            }
+            else if (income >= 75901 && income <= 153100 ) {
+                System.out.println("Your estimated taxes for 2017 are: $" + (((income-75900)*.25)+(jb1)+(jb2)));
+            }
+            else if (income >= 153101 && income <= 233350 ) {
+                System.out.println("Your estimated taxes for 2017 are: $" + (((income-153100)*.28)+(jb1)+(jb2)+(jb3)));
+            }
+```
+> #### Do not Repeat Yourself
+> One principle in software development is DRY - __D__on't __R__epeat __Y__ourself.
+> Having nearly identical code in mulitple place means increases the amount
+> of code you need to write and makes it harder to maintain.  It is harder
+> to maintain because, if you decide to change something in the repeated
+> code, you have to change it everywhere.
+>
+> A very common mistake is to miss a few places that need to be updated
+> making the program behave slightly differently depending on which version
+> of the code is encountered.
+>
+> In this particular case, you could just have one output statement
+> at the end of all the calculations.  Inside each `if`/`else` block
+> you could calculate the amount of tax due, and then just print it
+> once at the end.
+
+```
+            else if (income >= 233351 && income <= 416700 ) {
+                System.out.println("Your estimated taxes for 2017 are: $" + (((income-233350)*.33)+(jb1)+(jb2)+(jb3)+(jb4)));
+            }
+            else if (income >= 416701 && income <= 470700 ) {
+                System.out.println("Your estimated taxes for 2017 are: $" + (((income-416700)*.35)+(jb1)+(jb2)+(jb3)+(jb4)+(jb5)));
+            }
+            else if (income >= 470701 ) {
+                System.out.println("Your estimated taxes for 2017 are: $" + (((income-470700)*.396)+(jb1)+(jb2)+(jb3)+(jb4)+(jb5)+(jb6)));
+            }
+        }
+    }
+}
+```
+
+# Instructor Tests
+
+> #### Incorrect calculation for a joint filer earning $100000
+> For a joint filer earning $100000 total tax should be $16477.50 but you calculated a tax burden of $16465.50.
+
+> #### Incorrect calculation for a joint filer earning $200000
+> For a joint filer earning $200000 total tax should be $42884.50 but you calculated a tax burden of $42872.50.
+
+> #### Incorrect calculation for a joint filer earning $300000
+> For a joint filer earning $300000 total tax should be $74217.00 but you calculated a tax burden of $74205.00.
+
+> #### Incorrect calculation for a joint filer earning $450000
+> For a joint filer earning $450000 total tax should be $124383.00 but you calculated a tax burden of $124371.00.
+
+> #### Incorrect calculation for a joint filer earning $500000
+> For a joint filer earning $500000 total tax should be $143230.80 but you calculated a tax burden of $143218.80.
+
+
+</xmp><script type="text/javascript" src="http://msoe.us/taylor/gradedown.js"></script></body></html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><title>barnestr</title></head><body><xmp>
+# Lab 5 - Library Classes
+
+* Date: 10-9-2017
+* Course: SE1011-051
+* Submitted to: Dr. Chris Taylor
+
+>> | Earned | Possible | Criteria                                         |
+>> | ------ | -------- | ------------------------------------------------ |
+>> |   85   |    85    | Met requirements / Technical quality             |
+>> |   10   |    10    | Coding standard compliance and program clarity   |
+>> |    5   |     5    | Following submission instructions                |
+>
+> # Feedback
+> * Nice work
+
+# Lab5.java
+
+```
+/*
+* Course: SE1011-051
+* Term: Fall 2017-2018
+* Assignment: Lab 5
+* Author: Trevor Barnes
+* Date: 10/3/17
+ */
+package barnestr;
+
+import java.util.Scanner;
+
+public class Lab5 {
+    public static void main(String[] args) {
+        boolean error = false;
+        Scanner in = new Scanner(System.in);
+        String again = "y";
+        while (again.equals("y") || again.equals("Y")) {
+```
+> #### Considering using the do/while
+> Since you essentially need to ask the user for input at least once,
+> you should consider using a `do`/`while` loop.  That would allow you
+> to avoid having to duplicate the user input code.
+
+```
+            //Ask user for point amount
+            System.out.println("Enter the preferred number of randomly generated points:");
+            //Generate points
+            int pointAmt = in.nextInt();
+            in.nextLine();
+            while (pointAmt <= 0) {
+                System.out.println("Enter the preferred number of randomly generated points:");
+                pointAmt = in.nextInt();
+            }
+            in.nextLine();
+```
+> #### Should be inside the loop
+> This `in.nextLine();` call should be inside the loop so that
+> it only runs if there was a call to `in.nextInt()`.  Having it
+> here requires the user to hit enter one too many times.
+
+```
+            int inside = 0;
+            double finalPoint = 0;
+            for (int i = 0; i < pointAmt; i++) {
+                double pointX = Math.random();
+                double pointY = Math.random();
+```
+> #### -2 Did not use `Random` class
+> The lab assignment required that you write a program that:
+>> * Generates the desired number of random points using the `Random` class.
+>
+> Your program does not make use of the `Random` class.
+
+```
+                //Calculate the hypotenuse of the two points
+                double pointC = Math.sqrt(Math.pow(pointX, 2) + Math.pow(pointY, 2));
+                //Determine whether the point is inside or outside of the circle (pointC <= pi/4)
+                if (pointC <= 1) {
+                    inside++;
+                    //Convert proportion to pi
+                }
+                finalPoint = (double) inside / (double) pointAmt;
+            }
+            System.out.println((finalPoint * 4));
+```
+> #### -4 Does not display correct number of digits
+> The lab assignment required that for each estimate the program:
+>> * Displays the estimated value and the __number of correct digits__.
+
+```
+            do {
+                System.out.println("Would you like to generate a new estimate for pi?");
+                again = in.nextLine();
+            } while (!again.equals("y") && !again.equals("Y") && !again.equals("n") && !again.equals("N"));
+        }
+```
+> #### -4 Does not display best estimate
+> The lab assignment required that for each estimate the program:
+>> * If the user enters `n` or `N`, the program should __display the best estimate of pi__ generated while the program ran and then exit.
+
+```
+    }
+}
+```
+
+> #### -10 Late penalty
+> Your submission was 1 day late.
+
+</xmp><script type="text/javascript" src="http://msoe.us/taylor/gradedown.js"></script></body></html>
